@@ -16,7 +16,7 @@ class RegistrationsController < ApplicationController
     routes = RestClient.get("http://maps.googleapis.com/maps/api/directions/json?origin=#{from}&destination=#{to}&sensor=false")
     route = Route.create(directions: JSON.parse(routes)["routes"].first["legs"].first["steps"].collect{ |r| r["end_location"]})
     @route_instructions = "Please look into the map for tracking #{home_url(route.id)} #{strip_tags(@route_instructions)}. " + JSON.parse(routes)["routes"].first["legs"].first["steps"].collect{ |r| r["html_instructions"]}.join(" -> ")
-    # intimate_control_room
+    intimate_control_room
   end
 
 
